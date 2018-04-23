@@ -63,7 +63,7 @@ function update () {
 
   ctx.fillStyle = "#f4ce42"; //creates tail
   for (var i = 0; i < trail.length; i++) { 
-      ctx.fillRect(trail[i].x, trail[i].y, cellSize-2, cellSize-2);
+      ctx.fillRect(trail[i].x, trail[i].y, cellSize, cellSize);
       if (snakeX == trail[i].x && snakeY == trail[i].y) { //if snake head collides with tail
         tail = 5;
         score = 0;
@@ -74,9 +74,9 @@ function update () {
   var fruit = ctx.fillRect(fruitX, fruitY, cellSize, cellSize);
 
   ctx.fillStyle = "#f4ce42"; //creates snake head
-  var snake = ctx.fillRect(snakeX,snakeY,cellSize-2,cellSize-2);
+  var snake = ctx.fillRect(snakeX,snakeY,cellSize,cellSize);
 
-  ctx.fillStyle = 'white'; //score counter
+  ctx.fillStyle = ' #002b36 '; //score counter
   ctx.fillText("Score: " + score, 350,375);
 
   trail.push({x: snakeX, y: snakeY});
