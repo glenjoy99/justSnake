@@ -65,7 +65,7 @@ function update () {
     ctx.fillStyle = '#002b36'; //creates background
     ctx.fillRect(0,0,width,height);
   
-    ctx.fillStyle = "#f4ce42"; //creates tail
+    ctx.fillStyle = "#32CD32"; //creates tail
     for (var i = 0; i < trail.length; i++) { 
         ctx.fillRect(trail[i].x, trail[i].y, cellSize, cellSize);
         if (snakeX == trail[i].x && snakeY == trail[i].y) { //if snake head collides with tail
@@ -74,10 +74,10 @@ function update () {
         }
     }
   
-    ctx.fillStyle = "#FF0000"; //creates food
+    ctx.fillStyle = "#898a8c"; //creates food
     var fruit = ctx.fillRect(fruitX, fruitY, cellSize, cellSize);
   
-    ctx.fillStyle = "#f4ce42"; //creates snake head
+    ctx.fillStyle = "#32CD32"; //creates snake head
     var snake = ctx.fillRect(snakeX,snakeY,cellSize,cellSize);
   
     ctx.fillStyle = 'white'; //score counter
