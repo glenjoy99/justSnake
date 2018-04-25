@@ -1,13 +1,14 @@
 /*
-author Glen Joy
+authors Glen Joy, Sean Decena, Jalen Chavers, Michael Seyoum
+justSnake
 Copyright 2018
-HTML/JavaScript Snake
+Decena Software Solutions
 */
 var score;
-var gameOver;
+var gameOver = false;
 var eatsFruit;
-const width = 400;
-const height = 400;
+const width = 600;
+const height = 600;
 const cellSize = 20;
 var snakeX;
 var snakeY;
@@ -22,8 +23,6 @@ References HTML canvas and 2D Graphics context
 */
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
-
-//document.getElementById("score").value = score;
 
 
 setInterval (update, 1000/10); //Sets game frame rate
@@ -41,7 +40,7 @@ function setUp () {
   snakeY = height/2;
   fruitX = Math.floor(Math.random() * cellSize)*cellSize;
   fruitY = Math.floor(Math.random() * cellSize)*cellSize;
-
+  tail = 5;
 }
 /*
 Generates game characters including snake and food
@@ -49,6 +48,7 @@ Generates game characters including snake and food
 function update () {
   
   if (!gameOver) {
+    
     snakeX += xvel;
     snakeY += yvel;
   
@@ -65,25 +65,27 @@ function update () {
     ctx.fillStyle = '#002b36'; //creates background
     ctx.fillRect(0,0,width,height);
   
-    ctx.fillStyle = "#32CD32"; //creates tail
+    ctx.fillStyle = "#46aa29"; //creates tail
     for (var i = 0; i < trail.length; i++) { 
         ctx.fillRect(trail[i].x, trail[i].y, cellSize, cellSize);
-        if (snakeX == trail[i].x && snakeY == trail[i].y) { //if snake head collides with tail
-          tail = 5;
+        if (snakeX == trail[i].x && snakeY == trail[i].y && tail > 5) { //if snake head collides with tail
           score = 0;
+          tail = 5;
+          xvel = 0;
+          yvel = 0;
+          gameOver = true;
+          document.getElementById('gameOver').style.display='block';
         }
     }
   
     ctx.fillStyle = "#898a8c"; //creates food
     var fruit = ctx.fillRect(fruitX, fruitY, cellSize, cellSize);
   
-    ctx.fillStyle = "#32CD32"; //creates snake head
+    ctx.fillStyle = "#46aa29"; //creates snake head
     var snake = ctx.fillRect(snakeX,snakeY,cellSize,cellSize);
   
-    ctx.fillStyle = 'white'; //score counter
-    ctx.fillText("Score: " + score, 350,375);
-  
-  
+    document.getElementById('scoreNum').innerHTML = "Score: " + score; //score counter
+    
     trail.push({x: snakeX, y: snakeY});
     while (trail.length > tail) { //restrains tail to amount gained by eating fruit
       trail.shift();
@@ -105,7 +107,12 @@ function update () {
     }
     checkEatsFruit();
   }
+  
+  
+  
 }
+
+
 
 /*
 Controls game movements
@@ -117,28 +124,33 @@ function input () {
       xvel = 0;
       yvel = -20;
       gameOver = false;
+      document.getElementById('gameState').innerHTML = "";
      }else if (key == 40) {
       xvel = 0;
       yvel = 20;
       gameOver = false;
+      document.getElementById('gameState').innerHTML = "";
     } else if (key == 39) {
       yvel = 0;
       xvel = 20;
       gameOver = false;
+      document.getElementById('gameState').innerHTML = "";
     } else if (key == 37) {
       yvel = 0;
       xvel = -20;
       gameOver = false;
+      document.getElementById('gameState').innerHTML = "";
     } else if (key == 80) {
       xvel = 0;
       yvel = 0;
       gameOver = true;
+      document.getElementById('gameState').innerHTML = "GAME PAUSED";
     }
   }
 }
-
 
 //entry point
 setUp();
 input();
 update();
+
