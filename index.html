@@ -22,27 +22,48 @@
     
     <body>
         <div class="w3-container w3-navyblue w3-center w3-padding">
-            <h1 class="w3-nunito w3-jumbo w3-padding"> S  N  A  K  E  </h1>
+            <h1 class="w3-nunito w3-xxlarge"> S N A K E  </h1>
         </div>
         
-        <div class="w3-container w3-center" style="padding-top: 50px;">
-            <p class="w3-nunito w3-xlarge">This is a simple game of snake that we made for our final project. Use the arrow keys to play. Press "p" to pause.</p>
+        <div class="w3-container w3-center" style="padding-top: 30px;">
+            <p class="w3-nunito w3-large">Use the arrow keys to play. Press "p" to pause.</p>
         </div>
         
-        <div class="w3-center" style="padding-top: 80px;">
+        <!--Makes the canvas-->
+        <div class="w3-center" style="padding-top: 40px;">
             <canvas class="w3-navyblue w3-round w3-card-8" id="myCanvas" width="600" height="600" style="background-color:#FF69B4 ; margin-left: auto; margin-right: auto;"></canvas>
             <script src="snake.js"></script>
         </div>
         
-        <h3 id="scoreNum" class="w3-nunito w3-center" style="padding-left: 475px;">Score: </h3>
-        <h3 class="w3-nunito w3-center w3-wide w3-text-red" id="gameState"></h3>
+        <!--HTML for Score-->
+        <div class="w3-row">
+          <h3 class="w3-nunito w3-center w3-quarter" style=""></h3>
+          <h3 id="highscoreNum" class="w3-nunito w3-center w3-quarter" style=""> Highscore: </h3>
+          <h3 id="scoreNum" class="w3-nunito w3-center w3-quarter" style=""> Score: </h3>
+          <h3 class="w3-nunito w3-center w3-quarter" style=""></h3>
+        </div>
+        
         
         <!--Opens a modal for Game Over-->
-        <div id="gameOver" class="w3-modal w3-card-8" style= "padding-top: 600px;">
+        <div id="gameOver" class="w3-modal w3-card-8" style= "padding-top: 300px;">
           <div class="w3-modal-content" style="width: 600px;">
             <div class="w3-container">
-              <span onclick="document.getElementById('gameOver').style.display='none'" class="w3-button w3-display-topright">&times;</span>
               <h1 class="w3-text-red w3-wide w3-jumbo w3-nunito w3-center">GAME OVER</h1>
+              <div class="w3-btn w3-hover-shadow w3-green w3-display-middle w3-round" onclick="reset();" style="margin-top: 15px">Play Again</div>
+              <br>
+              <div class="w3-row">
+                <p id="scorePrint" class="w3-xlarge w3-nunito w3-text-navyblue w3-center w3-half"></p>
+                <p id="highscorePrint" class="w3-xlarge w3-nunito w3-text-navyblue w3-center w3-half"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--Opens a modal for Paused-->
+        <div id="pause" class="w3-modal w3-card-8" style= "padding-top: 300px;">
+          <div class="w3-modal-content" style="width: 600px;">
+            <div class="w3-container">
+              <h1 class="w3-text-red w3-wide w3-jumbo w3-nunito w3-center">PAUSED</h1>
             </div>
           </div>
         </div>
