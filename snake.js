@@ -49,6 +49,10 @@ function setUp () {
   fruitX = Math.floor(Math.random() * cellSize)*cellSize;
   fruitY = Math.floor(Math.random() * cellSize)*cellSize;
   tail = 0;
+  goingUp = false;
+  goingRight = false;
+  goingLeft = false;
+  goingDown == false
 }
 /*
 Generates game characters including snake and food
@@ -115,8 +119,12 @@ function update () {
          cellSize + snakeY > fruitY) {
           score+=5;
           tail += 5;
-          fruitX = Math.floor(Math.random() * cellSize)*cellSize;
-          fruitY = Math.floor(Math.random() * cellSize)*cellSize;
+          
+          while (fruitX == snakeX && fruitY == snakeY){
+            fruitX = Math.floor(Math.random() * cellSize)*cellSize;
+            fruitY = Math.floor(Math.random() * cellSize)*cellSize;
+          }
+          
           eatsFruit = true;
       } else {
         eatsFruit = false;
@@ -182,8 +190,9 @@ function input () {
       yvel = 0;
       xvel = 0;
       paused = true;
-      
       document.getElementById('pause').style.display='block';
+    } else if (key == 32 && gameOver){
+      reset();
     }
     
   }
