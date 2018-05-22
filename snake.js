@@ -2,7 +2,7 @@
 authors Glen Joy, Sean Decena, Jalen Chavers, Michael Seyoum
 justSnake
 Copyright 2018
-Decena Software Solutions
+BackRow Software Solutions
 */
 var score;
 var highscore = 0;
@@ -52,7 +52,7 @@ function setUp () {
   goingUp = false;
   goingRight = false;
   goingLeft = false;
-  goingDown == false
+  goingDown = false
 }
 /*
 Generates game characters including snake and food
